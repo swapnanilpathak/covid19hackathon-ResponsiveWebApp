@@ -1,3 +1,27 @@
+<?php
+ 
+  define('__CONFIG__',true);
+
+  require_once("include/config.php");
+
+  
+  ForceLogin();
+
+
+  // echo $_SESSION['user_id'].' is your session id';
+  $userId = $_SESSION['user_id'];
+  $getUserInfo = $con->prepare("SELECT * FROM users WHERE user_id= :id LIMIT 1");
+  $getUserInfo->bindParam(':id',$userId,PDO::PARAM_INT);
+  $getUserInfo->execute();
+  if($getUserInfo->rowCount()==1){
+    $userDetails = $getUserInfo->fetch(PDO::FETCH_ASSOC);
+
+   
+  }else{
+    header("location:/covid19hackathon/logout.php");exit;
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,51 +44,7 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html"> <img src="assets/images/assammap.jpg" class="img-responsive rounded circle" alt="Responsive image" width="50px" height ="50px"> Assam </a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse text-white" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Services
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="foodSupplyForIsolatedPatient.html">Food Supply For Isolated Patient</a>
-              <a class="dropdown-item" href="#">Essential Service Transport Pass</a>
-              <a class="dropdown-item" href="#">Personal Pass</a>
-              <a class="dropdown-item" href="#">Counselling For Patients</a>
-              
-            </div>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Your Account
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="userUpdateProfile.html">Update Profile</a>
-              <a class="dropdown-item" href="userChangePassword.html">Change Passsword</a>
-              <a class="dropdown-item" href="logout.html">Logout</a>
-              
-              
-            </div>
-          </li>
-      
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <?php require("navbarForUsers.php")?>
 
   <!-- Page Content -->
   <div class="container">
@@ -81,7 +61,7 @@
       
       <div class="col-lg-6">
         <form  class="form-horizontal passwordChangeForm" action="" method="POST">
-          <input type="hidden" name="f_id" value="1">
+          <input type="hidden" name="f_id" value="<?php echo $userDetails['user_id']?>">
          <!--old password-->
         <div class="form-group">
             <label class="control-label col-sm-2" for="f_oldpassword">Old Password</label>
@@ -138,6 +118,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="assets/js/jquery-3.3.1.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
+   <script src="assets/js/formfunctions_updateprofile.js"></script>
 
 </body>
 

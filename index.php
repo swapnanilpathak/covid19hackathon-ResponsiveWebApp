@@ -1,3 +1,30 @@
+<?php
+ 
+  define('__CONFIG__',true);
+
+  require_once("include/config.php");
+
+  
+  
+
+
+ $userLoggedIn = 0;
+ if(isset($_SESSION['user_id'])){
+    $userId = $_SESSION['user_id'];
+  $getUserInfo = $con->prepare("SELECT * FROM users WHERE user_id= :id LIMIT 1");
+  $getUserInfo->bindParam(':id',$userId,PDO::PARAM_INT);
+  $getUserInfo->execute();
+  if($getUserInfo->rowCount()==1){
+    $userDetails = $getUserInfo->fetch(PDO::FETCH_ASSOC);
+    $userLoggedIn=1;
+   
+  }else{
+    $userLoggedIn=0;
+  }
+ }
+  
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,46 +46,7 @@
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html"> <img src="assets/images/assammap.jpg" class="img-responsive rounded circle" alt="Responsive image" width="50px" height ="50px"> Assam </a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse text-white" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Services
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="foodSupplyForIsolatedPatient.html">Food Supply For Isolated Patient</a>
-              <a class="dropdown-item" href="#">Essential Service Transport Pass</a>
-              <a class="dropdown-item" href="#">Personal Pass</a>
-              <a class="dropdown-item" href="#">Counselling For Patients</a>
-              
-            </div>
-          </li>
-          
-		  <li class="nav-item">
-            <a class="nav-link" href="userAuth.html">Sign Up</a>
-          </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="userAuth.html">Login</a>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+<?php ($userLoggedIn==0)?require("navbarForPublic.php"):require("navbarForUsers.php"); ?>
   <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -110,7 +98,7 @@
 
     <div class="row">
 		<div class="col-lg-6">
-			Please register login to use the services.
+			<?php echo($userLoggedIn==0)? "Please login or register to use the sevices": "Logged in as ".$userDetails['user_email'].""; ?>
 		</div>
 		
 	</div>
@@ -127,7 +115,7 @@
           <li>
             <strong>Services</strong>
           </li>
-          <a class="dropdown-item" href="foodSupplyForIsolatedPatient.html">Food Supply For Isolated Patient</a>
+          <a class="dropdown-item" href="foodSupplyForIsolatedPatient.php">Food Supply For Isolated Patient</a>
               <a class="dropdown-item" href="#">Essential Service Transport Pass</a>
               <a class="dropdown-item" href="#">Personal Pass</a>
               <a class="dropdown-item" href="#">Counselling For Patients</a>
