@@ -21,16 +21,7 @@
   if($getUserInfo->rowCount()==1){
     $userDetails = $getUserInfo->fetch(PDO::FETCH_ASSOC);
 
-   if(isset($_POST['address_id'])){
-    if(isset($_POST['new_status'])){
-      $addr = $_POST['address_id'];
-      $stat = $_POST['new_status'];
-      $updateQ = $con->prepare("UPDATE foodsupplyaddresses SET status =:status WHERE address_id=:addr ");
-      $updateQ->bindParam("status",$stat);
-      $updateQ->bindParam("addr",$addr);
-      $updateQ->execute();
-    }
-   }
+
 
 
   }else{
@@ -61,30 +52,7 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-     <a class="navbar-brand" href="../index.php"> <img src="../assets/images/assammap.jpg" class="img-responsive rounded circle" alt="Responsive image" width="50px" height ="50px"> Assam </a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?php echo $userDetails['username']?>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              
-              <a class="dropdown-item" href="logout.php">Logout</a>
-              
-              
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <?php require("navbar.php");?>
 
   <!-- Page Content -->
   <div class="container">
@@ -98,33 +66,7 @@
     <!-- Intro Content -->
     <div class="row">
       <div class="col-lg-12">
-        <h4>Food Supply Requests</h4>
-          <div style="overflow-x:auto;">
-  <table class="table">
-    <tr><th>Full Name</th><th>Address Line 1</th><th>Address Line 2</th><th>City/Town/Village</th><th>District</th><th>pincode</th><th>phone number</th><th>time</th><th>Status</th></tr>
-            <?php 
-              $foodSupplyList = $con->prepare("SELECT * FROM foodsupplyaddresses");
-
-              $foodSupplyList->execute();
-              while($row = $foodSupplyList->fetch(PDO::FETCH_ASSOC)){
-                echo "<tr><td>".$row['fullname']."</td><td>".$row['address1']."</td><td>".$row['address2']."</td><td>".$row['city']."</td><td>".$row['district']."</td><td>".$row['pincode']."</td><td>".$row['phoneno']."</td><td>".$row['date']."</td><td><form method='POST' action='dashboard.php'>
-
-                <input type ='hidden' name='address_id' value=".$row['address_id'].">
-                <select name='new_status'>
-                <option selected>".$row['status']."</option>
-                <option>Initiated</option>
-                <option>Dispatched</option>
-                <option>Delivered</option>
-                <option>Processing</option>
-                </select>
-                <input type='submit' value='GO' class='btn btn-dark'>
-                </form></td>";
-              }
-
-
-            ?>
-  </table>
-</div>
+        <h2>Admin Dashboard</h2>
 
 
 
@@ -132,6 +74,64 @@
       
     </div>
     <!-- /.row -->
+    <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Registered Users</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <?php
+                                              $sql = "SELECT count(*) FROM users "; 
+$result = $con->prepare($sql); 
+$result->execute(); 
+$number_of_rows = $result->fetchColumn(); echo "Total ".$number_of_rows;
+                                        ?>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Cases of Food Supply</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <?php
+                                              $sql = "SELECT count(*) FROM foodsupplyaddresses "; 
+$result = $con->prepare($sql); 
+$result->execute(); 
+$number_of_rows = $result->fetchColumn(); echo "Total ".$number_of_rows;
+                                        ?>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Cases of Essential Pass</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <?php
+                                              $sql = "SELECT count(*) FROM essentialpass "; 
+$result = $con->prepare($sql); 
+$result->execute(); 
+$number_of_rows = $result->fetchColumn(); echo "Total ".$number_of_rows;
+                                        ?>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Cases of Personal Pass</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <?php
+                                              $sql = "SELECT count(*) FROM personalpass "; 
+$result = $con->prepare($sql); 
+$result->execute(); 
+$number_of_rows = $result->fetchColumn(); echo "Total ".$number_of_rows;
+                                        ?>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
     
 

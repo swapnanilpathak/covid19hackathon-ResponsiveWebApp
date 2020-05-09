@@ -77,9 +77,9 @@
             <strong>Services</strong>
           </li>
           <a class="dropdown-item" href="foodSupplyForIsolatedPatient.php">Food Supply For Isolated Patient</a>
-              <a class="dropdown-item" href="#">Essential Service Transport Pass</a>
-              <a class="dropdown-item" href="#">Personal Pass</a>
-              <a class="dropdown-item" href="#">Counselling For Patients</a>
+              <a class="dropdown-item" href="essentialTransportPass.php">Essential Service Transport Pass</a>
+              <a class="dropdown-item" href="personalPass.php">Personal Pass</a>
+             
         </ul>
         
       </div>
