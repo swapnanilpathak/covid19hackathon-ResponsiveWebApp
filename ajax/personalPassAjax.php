@@ -31,6 +31,14 @@
 				, ':addpeople'=>$f_addpeople);
 			$addquery = $con->prepare("INSERT INTO personalpass ( userid, fullname, address , city, district, pincode, phoneno, reason, additionalpeople ) values (:userid, :fullname, :address, :city, :district, :pincode, :phoneno, :reason, :addpeople)");
 			$addquery->execute($datalist);
+
+			function updateDistrictData($con,$serviceName, $districtName){
+				$updateDistrictData = $con->prepare("UPDATE districtwisedata SET $serviceName=$serviceName+1  WHERE district_name = :dname");
+			$updateDistrictData->bindParam("dname",$districtName);
+			$updateDistrictData->execute();
+			}
+			
+			updateDistrictData($con,"personalpass",$f_district);
 			
 			$result['success'] ='Your query is submitted';
 			

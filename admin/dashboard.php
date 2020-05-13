@@ -21,6 +21,12 @@
   if($getUserInfo->rowCount()==1){
     $userDetails = $getUserInfo->fetch(PDO::FETCH_ASSOC);
 
+    
+
+
+
+
+
 
 
 
@@ -47,6 +53,52 @@
 
   <!-- Custom styles for this template -->
   <link href="assets/css/modern-business.css" rel="stylesheet">
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['District', 'food supply requests', 'Essential pass requests','personal pass requests'],
+         
+          <?php
+              $stmt1 = $con->prepare("SELECT * FROM districtwisedata");
+              if ($stmt1->execute()) {
+              while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+              ?>
+              ['<?php echo $row['district_name'];?>',<?php echo $row['foodsupply'];?>,
+              <?php echo $row['essentialpass'];?>,<?php echo $row['personalpass'];?>
+
+              ],
+                
+
+
+              <?php
+    }
+}
+          ?>
+          
+        ]);
+
+        var options = {
+
+          chart: {
+            title: 'Districtwise food supply requests recieved',
+            
+          },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          bar:{groupWidth:200},
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+
+ </script>
 
 </head>
 
@@ -135,7 +187,20 @@ $number_of_rows = $result->fetchColumn(); echo "Total ".$number_of_rows;
 
     
 
-    
+    <div class="row">
+      <div class="col-lg-12 col-md-6" style="overflow-x:auto">
+        
+        <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+
+        
+        
+        
+
+      </div>
+      <div class="col-lg-12 col-md-6">
+          
+        </div>
+    </div>
 
   </div>
   <!-- /.container -->

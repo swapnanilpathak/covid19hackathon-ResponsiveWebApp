@@ -34,6 +34,14 @@
 				, ':vregdno'=>$f_vregdno, ':tod'=>$f_tod, ':fromd'=>$f_fromd,':dest'=>$f_destination);
 			$addquery = $con->prepare("INSERT INTO essentialpass ( userid, fullname, address , city, district, pincode, phoneno, reason, vregdno, fromdate, todate, destination ) values (:userid, :fullname, :address, :city, :district, :pincode, :phoneno, :reason, :vregdno, :fromd, :tod, :dest)");
 			$addquery->execute($datalist);
+
+			function updateDistrictData($con,$serviceName, $districtName){
+				$updateDistrictData = $con->prepare("UPDATE districtwisedata SET $serviceName=$serviceName+1  WHERE district_name = :dname");
+			$updateDistrictData->bindParam("dname",$districtName);
+			$updateDistrictData->execute();
+			}
+			
+			updateDistrictData($con,"essentialpass",$f_district);
 			
 			$result['success'] ='Your query is submitted';
 			

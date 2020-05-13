@@ -28,6 +28,14 @@
 			$datalist = array(':user_id' => $f_id, ':fullname' => $f_fullname, ':address1'=> $f_address1, ':address2'=>$f_address2,':city'=>$f_city,':pincode'=>$f_pincode,':phoneno'=>$f_phoneno,':district'=>$f_district);
 			$addquery = $con->prepare("INSERT INTO foodsupplyaddresses ( user_id, fullname, address1, address2, city, district, pincode, phoneno) values (:user_id, :fullname, :address1, :address2, :city, :district, :pincode, :phoneno)");
 			$addquery->execute($datalist);
+
+			function updateDistrictData($con,$serviceName, $districtName){
+				$updateDistrictData = $con->prepare("UPDATE districtwisedata SET $serviceName=$serviceName+1  WHERE district_name = :dname");
+			$updateDistrictData->bindParam("dname",$districtName);
+			$updateDistrictData->execute();
+			}
+			
+			updateDistrictData($con,"foodsupply",$f_district);
 			
 			$result['success'] ='Your query is submitted';
 			
