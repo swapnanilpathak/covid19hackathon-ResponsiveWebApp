@@ -1,4 +1,5 @@
 <?php
+ob_start();
 	$past = time()-3600;
 	session_start();
 	session_destroy();
@@ -6,6 +7,6 @@
 	setcookie(session_name(),'',0,'/');
 	session_regenerate_id(true);
 
-	header('location:/covid19hackathon/admin/index.php');
+	header('location:/admin/index.php');
 
 ?>

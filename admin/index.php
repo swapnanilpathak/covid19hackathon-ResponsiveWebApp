@@ -27,7 +27,7 @@ require_once("../include/config.php");
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-     <a class="navbar-brand" href="dashboard.php"> <img src="../assets/images/assammap.jpg" class="img-responsive rounded circle" alt="Responsive image" width="50px" height ="50px"> Assam </a>
+     <a class="navbar-brand" href="dashboard.php"> <img src="../assets/images/Assammap.jpg" class="img-responsive rounded circle" alt="Responsive image" width="50px" height ="50px"> Assam </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -43,8 +43,7 @@ require_once("../include/config.php");
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Admin
-    </h1>
+    
 
     
 
@@ -52,7 +51,8 @@ require_once("../include/config.php");
     <div class="row">
       <div class="col-lg-6">
         <!--form here -->
-
+        <h1 class="mt-4 mb-3">Admin
+    </h1>
         <form class="adminForm" method="POST">
   <div class="form-group ">
     <label for="exampleInputEmail1">admin username</label>
@@ -72,6 +72,22 @@ require_once("../include/config.php");
 
       </div>
       <div class="col-lg-6">
+       <h1 class="mt-4 mb-3">Employee
+    </h1> 
+          <form class="employeeForm" method="POST">
+  <div class="form-group ">
+    <label for="exampleInputEmail1">username</label>
+    <input name="employeeusername" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input name="employeepassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="errorText"></div>
+  <button type="submit" class="btn btn-dark">Submit</button>
+</form>
+
         
       </div>
     </div>

@@ -9,7 +9,7 @@
     
   }else{
    
-    header("location:/covid19hackathon/admin/index.php");
+    header("location:/admin/index.php");
   }
 
 
@@ -25,7 +25,7 @@
     if(isset($_POST['new_status'])){
       $addr = $_POST['address_id'];
       $stat = $_POST['new_status'];
-      $updateQ = $con->prepare("UPDATE essentialpass SET status =:status WHERE userid=:addr ");
+      $updateQ = $con->prepare("UPDATE essentialpass SET status =:status WHERE id=:addr ");
       $updateQ->bindParam("status",$stat);
       $updateQ->bindParam("addr",$addr);
       $updateQ->execute();
@@ -34,7 +34,7 @@
 
 
   }else{
-    header("location:/covid19hackathon/admin/logout.php");exit;
+    header("location:/admin/logout.php");exit;
   }
 
 ?>
@@ -86,7 +86,7 @@
               while($row = $foodSupplyList->fetch(PDO::FETCH_ASSOC)){
                 echo "<tr><td>".$row['fullname']."</td><td>".$row['address']."</td><td>".$row['city']."</td><td>".$row['district']."</td><td>".$row['pincode']."</td><td>".$row['phoneno']."</td><td>".$row['reason']."</td><td>".$row['vregdno']."</td><td>".$row['fromdate']."</td><td>".$row['todate']."</td><td>".$row['destination']."</td><td>".$row['timesubmitted']."</td><td><form method='POST' action='essentialPass.php'>
 
-                <input type ='hidden' name='address_id' value=".$row['userid'].">
+                <input type ='hidden' name='address_id' value=".$row['id'].">
                 <select name='new_status'>
                 <option selected>".$row['status']."</option>
                 <option>Processing</option>

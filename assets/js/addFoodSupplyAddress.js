@@ -75,7 +75,7 @@ $(document)
 	$.ajax(
 	{
 		type: 'POST',
-		url: '/covid19hackathon/ajax/foodSupplyAjax.php',
+		url: '/ajax/foodSupplyAjax.php',
 		data : dataObject,
 		dataType: 'json',
 		async:true
@@ -91,6 +91,7 @@ $(document)
 			 if(data.success!=undefined){
 			 	
 				__errorText__.html(data.success).show();
+				document.getElementById("form").reset();
 
 			}
 		}

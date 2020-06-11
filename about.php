@@ -71,7 +71,7 @@
     <div class="row">
       <div class="col-lg-6">
         <h2>Covid 19 management portal</h2>
-        <p>Covid 19 management web portal for the state of assam built for covid19hackathon</p>
+        <p>Covid 19 management web portal for the state of Assam built for covid19hackathon</p>
         <ul>
           <li>
             <strong>Services</strong>
@@ -79,7 +79,14 @@
           <a class="dropdown-item" href="foodSupplyForIsolatedPatient.php">Food Supply For Isolated Patient</a>
               <a class="dropdown-item" href="essentialTransportPass.php">Essential Service Transport Pass</a>
               <a class="dropdown-item" href="personalPass.php">Personal Pass</a>
-             
+             <a class="dropdown-item" href="volunteerForWork.php">Work As A Volunteer</a>
+             <a class="dropdown-item" href="doctorAppointment.php">Online Doctor's Appointment</a>
+              <a class="dropdown-item" href="hospitalAdmission.php">Hospital Admission</a>
+              <a class="dropdown-item" href="inputPatientSymptomData.php">Input Patient Symptom Data</a>
+              <a class="dropdown-item" href="counselling.php">Book A Counselling Session</a>
+              <a class="dropdown-item" href="buymsmeproducts.php">Buy MSME Products</a>
+               
+             <a class="dropdown-item" href="donatereliefmaterials.php">Donate Relief Materials</a>
         </ul>
         
       </div>
@@ -97,12 +104,7 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-light ">
-    <div class="container">
-      <p class="m-0 text-center text-dark">Copyright &copy; Swapnanil Pathak 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+  <?php require_once("footer.php") ?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="assets/js/jquery-3.3.1.js"></script>

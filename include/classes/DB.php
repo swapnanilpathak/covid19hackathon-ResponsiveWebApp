@@ -15,7 +15,7 @@
 		private function __construct(){//constructor
 
 			try{
-				self::$connection = new PDO('mysql:charset=utf8mb4;host=localhost;port=3306;dbname=covid19hackathon','root','');
+				self::$connection = new PDO('mysql:charset=utf8mb4;host=localhost;port=3306;dbname=covid19hackathonadb','root','');
 				self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				self::$connection->setAttribute(PDO::ATTR_PERSISTENT,false);
 			}catch(PDOException $e){

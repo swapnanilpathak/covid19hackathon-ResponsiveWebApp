@@ -85,7 +85,7 @@ $(document)
 	$.ajax(
 	{
 		type: 'POST',
-		url: '/covid19hackathon/ajax/personalPassAjax.php',
+		url: '/ajax/personalPassAjax.php',
 		data : dataObject,
 		dataType: 'json',
 		async:true
@@ -101,6 +101,7 @@ $(document)
 			 if(data.success!=undefined){
 			 	
 				__errorText__.html(data.success).show();
+				document.getElementById("form").reset();
 
 			}
 		}

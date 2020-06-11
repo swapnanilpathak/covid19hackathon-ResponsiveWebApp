@@ -37,7 +37,7 @@ $(document)//select the document
 	$.ajax(
 	{
 		type: 'POST',
-		url: '/covid19hackathon/ajax/registerAjax.php',
+		url: '/ajax/registerAjax.php',
 		data : dataObject,
 		dataType: 'json',
 		async:true
@@ -99,7 +99,7 @@ $(document)//select the document
 	$.ajax(
 	{
 		type: 'POST',
-		url: '/covid19hackathon/ajax/loginAjax.php',
+		url: '/ajax/loginAjax.php',
 		data : dataObject,
 		dataType: 'json',
 		async:true

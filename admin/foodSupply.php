@@ -9,7 +9,7 @@
     
   }else{
    
-    header("location:/covid19hackathon/admin/index.php");
+    header("location:/admin/index.php");
   }
 
 
@@ -34,7 +34,7 @@
 
 
   }else{
-    header("location:/covid19hackathon/admin/logout.php");exit;
+    header("location:/admin/logout.php");exit;
   }
 
 ?>
@@ -75,7 +75,7 @@
     <!-- Intro Content -->
     <div class="row">
       <div class="col-lg-12">
-        <h4>Essential Pass Requests</h4>
+        <h4>Foodsupply for isolated patients Requests</h4>
           <div style="overflow-x:auto;">
   <table class="table">
     <tr><th>Full Name</th><th>Address Line 1</th><th>Address Line 2</th><th>City/Town/Village</th><th>District</th><th>pincode</th><th>phone number</th><th>time</th><th>Status</th></tr>

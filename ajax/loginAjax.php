@@ -30,7 +30,7 @@
 
 			if(password_verify($phpPassword,$hashedPassword)){
 				
-				$result['redirect'] ='/covid19hackathon/index.php';
+				$result['redirect'] ='/index.php';
 				
 				$_SESSION['user_id']= $userId;
 				

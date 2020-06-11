@@ -18,7 +18,7 @@
 
    
   }else{
-    header("location:/covid19hackathon/logout.php");exit;
+    header("location:/logout.php");exit;
   }
 
 ?>
@@ -107,13 +107,7 @@
   </div>
   <!-- /.container -->
 
-   <!-- Footer -->
-  <footer class="py-5 bg-light ">
-    <div class="container">
-      <p class="m-0 text-center text-dark">Copyright &copy; Swapnanil Pathak 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+<?php require_once("footer.php") ?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="assets/js/jquery-3.3.1.js"></script>

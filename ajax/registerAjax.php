@@ -45,7 +45,7 @@
 
 			$_SESSION['user_id']= (int)$user_id;
 
-			$result['redirect'] = '/covid19hackathon/index.php';
+			$result['redirect'] = '/index.php';
 			$result['is_logged_in'] = true;
 			}
 			else{

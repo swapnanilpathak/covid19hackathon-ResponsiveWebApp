@@ -33,7 +33,7 @@ $(document)
 	$.ajax(
 	{
 		type: 'POST',
-		url: '/covid19hackathon/ajax/updateProfileAjax.php',
+		url: '/ajax/updateProfileAjax.php',
 		data : dataObject,
 		dataType: 'json',
 		async:true
@@ -97,7 +97,7 @@ $(document)
 	$.ajax(
 	{
 		type: 'POST',
-		url: '/covid19hackathon/ajax/updateProfilePasswordAjax.php',
+		url: '/ajax/updateProfilePasswordAjax.php',
 		data : dataObject,
 		dataType: 'json',
 		async:true
